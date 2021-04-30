@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_one :buyer
+- has_many :buyer
 
 ## items テーブル
 
@@ -42,7 +42,7 @@
 | Column          | Type       | Options                 |
 | ----------------| ---------- | ----------------------- | 
 | user            | references | foreign_key: true       |
-| prefecture_id   | integer    | null: false             |
+| item            | references | foreign_key: true       |
 
 ### Association
 - has_one :address
@@ -51,15 +51,15 @@
 
 ## addresses テーブル
 
-| Column           | Type       | Options              |
-| ---------------- | ---------- | -------------------- |
-| postal_code      | string | null: false              |
-| city             | string | null: false              |
-| house_number     | string | null: false              |
-| building_name    | string |                          |
-| telephone_number | string | null: false              |
-
-
+| Column           | Type       | Options                  |
+| ---------------- | ---------- | ------------------------ | 
+| postal_code      | string     | null: false              |
+| city             | string     | null: false              |
+| house_number     | string     | null: false              |
+| building_name    | string     |                          |
+| telephone_number | string     | null: false              |
+| prefecture_id    | integer    | null: false              |
+| buyer            | references | foreign_key: true        |
 
 
 
