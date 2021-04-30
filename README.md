@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :buyer
+- has_many :buyers
 
 ## items テーブル
 
@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :buyer
+- has_one :buyer
 
 ## buyers テーブル
 
@@ -46,8 +46,8 @@
 
 ### Association
 - has_one :address
-- has_many :items
-- has_one :user
+- belongs_to :item
+- belongs_to :user
 
 ## addresses テーブル
 
@@ -61,6 +61,8 @@
 | prefecture_id    | integer    | null: false              |
 | buyer            | references | foreign_key: true        |
 
+### Association
+- belongs_to :buyer
 
 
 
