@@ -18,9 +18,7 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = 'カキクケコ'
         @user.birthday = '1900-01-01'
         expect(@user).to be_valid
-        
       end
-
     end
     context '新規登録できないとき' do
       it 'nicknameが空だと登録できない' do
@@ -42,6 +40,21 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaa'
         @user.valid? 
         expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)", "Password is invalid"
+      end
+      it 'passwordは数字のみでは登録できない' do
+        @user.password = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
+      end
+      it 'passwordは英語のみでは登録できない' do
+        @user.password = 'abcdef'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
+      end
+      it 'passwordは全角文字では登録できない' do
+        @user.password = 'アイウエオカ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
       end
       it 'password_confirmationが空だと登録できない' do
         @user.password_confirmation = ''
