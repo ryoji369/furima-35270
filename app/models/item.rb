@@ -2,16 +2,17 @@ class Item < ApplicationRecord
   belongs_to :user 
   has_one_attached :image
 
-  validates :name, presence: true
-  validates :text, presence: true
-  validates :category, presence: true
-  validates :price, presence: true
-  validates :status, presence: true
-  validates :shipping_charge, presence: true
-  validates :shipping_date, presence: true
-  validates :prefecture_id, presence: true
-  validates :image, presence: true
-
+ with_options presence: true do
+  validates :name
+  validates :text
+  validates :category
+  validates :price, format: { with: /\A[0-9]+\Z/ }, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } 
+  validates :status
+  validates :shipping_charge
+  validates :shipping_date
+  validates :prefecture_id
+  validates :image
+ end
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
@@ -19,11 +20,14 @@ class Item < ApplicationRecord
   belongs_to :shipping_date
   belongs_to :prefecture
    
-
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :prefecture_id, numericality: { other_than: 1 } 
-  validates :shipping_charge_id, numericality: { other_than: 1 } 
-  validates :shipping_date_id, numericality: { other_than: 1 } 
-  validates :status_id, numericality: { other_than: 1 } 
-
+ with_options numericality: { other_than: 1 } do
+  validates :category_id
+  validates :prefecture_id
+  validates :shipping_charge_id
+  validates :shipping_date_id
+  validates :status_id
+ end
 end
+
+
+
