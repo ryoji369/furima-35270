@@ -5,11 +5,11 @@ class Item < ApplicationRecord
  with_options presence: true do
   validates :name
   validates :text
-  validates :category
+  validates :category_id
   validates :price, format: { with: /\A[0-9]+\Z/ }, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } 
-  validates :status
-  validates :shipping_charge
-  validates :shipping_date
+  validates :status_id
+  validates :shipping_charge_id
+  validates :shipping_date_id
   validates :prefecture_id
   validates :image
  end
@@ -21,10 +21,10 @@ class Item < ApplicationRecord
   belongs_to :prefecture
    
  with_options numericality: { other_than: 1 } do
-  validates :category
-  validates :status
-  validates :shipping_charge
-  validates :shipping_date
+  validates :category_id
+  validates :status_id
+  validates :shipping_charge_id
+  validates :shipping_date_id
   validates :prefecture_id
  end
 end
