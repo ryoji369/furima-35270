@@ -21,7 +21,11 @@ class Item < ApplicationRecord
   belongs_to :prefecture
    
  with_options numericality: { other_than: 1 } do
- 
+  validates :category
+  validates :status
+  validates :shipping_charge
+  validates :shipping_date
+  validates :prefecture_id
  end
 end
 
