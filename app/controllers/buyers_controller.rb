@@ -5,8 +5,6 @@ class BuyersController < ApplicationController
 
   def index
     @buyer_address = BuyerAddress.new
-
-    
   end
 
   def create
@@ -40,7 +38,7 @@ class BuyersController < ApplicationController
   end
 
   def move_to_index
-    if current_user == @item.user || (!(current_user == @item.user) && @item.buyer.present?)
+    if current_user == @item.user || @item.buyer.present?
       redirect_to root_path
     end
   end
