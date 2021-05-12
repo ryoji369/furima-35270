@@ -1,5 +1,5 @@
 class Buyer < ApplicationRecord
-  attr_accessor :token, :price
+  attr_accessor :token
   has_one :address
   belongs_to :item
   belongs_to :user
