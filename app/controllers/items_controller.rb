@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -53,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != @item.user_id && @item.buyer.present?
+    if current_user.id != @item.user_id || (current_user.id == @item.user_id && @item.buyer.present?)
       redirect_to root_path
     end
   end
